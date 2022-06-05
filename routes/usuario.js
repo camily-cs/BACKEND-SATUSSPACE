@@ -55,7 +55,7 @@ const router = express.Router();
 
     //DELETE-DELETAR USUARIO-OK
     router.delete("/api/usuario/apagar/:id", (req, res) => {
-        /* res.send(`Dentista de id ${req.params.id} foi deletado com sucesso`); */
+        /* res.send(`Usuario de id ${req.params.id} foi deletado com sucesso`); */
         conexao.query("delete from tbUsuario where idUsuario = ?", [req.params.id],  (erro,resultado) => {
             if(erro){
                 res.status(500).send({output: `Erro ao deletar usuario -> ${erro} `});
