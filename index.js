@@ -40,5 +40,6 @@ const conexao = mysql.createConnection({
 const rotaUsuario = require('./routes/usuario');
 app.use('usuario', rotaUsuario);
 
+console.log(rotaUsuario)
 
 app.listen(3000,()=>console.log("Servidor online na porta 3000"));

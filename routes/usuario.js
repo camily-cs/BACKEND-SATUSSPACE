@@ -1,9 +1,9 @@
 /* ROTA USUARIO - OK*/
 const express = require('express');
-const router = express.Router();
+const app = express.Router();
 
     //GET-LISTAR TODOS OS USUARIOS-OK
-    router.get( "/api/usuario/listar", (req, res) => {
+    app.get( "/api/usuario/listar", (req, res) => {
         /*res.status(200).send ({
              output:("Todos usuarios cadastrados")
         }); */
@@ -19,7 +19,7 @@ const router = express.Router();
 
 
     //GET-LISTAR APENAS UM USUARIO-OK
-    router.get("/api/usuario/listar/:id", (req, res) => {
+    app.get("/api/usuario/listar/:id", (req, res) => {
         /* res.send ("Usuario fulano"); */
 
         //CONSULTANDO O BANCO DE DADOS PARA EXIBIR UM USUARIO CADASTRADO:
@@ -33,7 +33,7 @@ const router = express.Router();
 
 
     //POST-CADASTRAR USUARIO-OK
-    router.post("/api/usuario/cad", (req, res) => {
+    app.post("/api/usuario/cad", (req, res) => {
         res.status(200).send ({
             output:(`Olá ${ req.body.nomeUsuario}, Você foi cadastrado(a) com sucesso.`)
         });
@@ -41,7 +41,7 @@ const router = express.Router();
 
 
     //PUT-ATUALIZAR DADOS DO USUARIO-OK
-    router.put("/api/usuario/atualizar/:id", (req, res) => {
+    app.put("/api/usuario/atualizar/:id", (req, res) => {
         /* res.send(`O id passado foi ${req.params.id} e os dados para atualização são ${req.body} `); */
         conexao.query("update tbUsuario set ? where idUsuario=?", [req.body, req.params.id], (erro, resultado) => {
             if(erro){
@@ -54,7 +54,7 @@ const router = express.Router();
 
 
     //DELETE-DELETAR USUARIO-OK
-    router.delete("/api/usuario/apagar/:id", (req, res) => {
+    app.delete("/api/usuario/apagar/:id", (req, res) => {
         /* res.send(`Usuario de id ${req.params.id} foi deletado com sucesso`); */
         conexao.query("delete from tbUsuario where idUsuario = ?", [req.params.id],  (erro,resultado) => {
             if(erro){
@@ -65,5 +65,6 @@ const router = express.Router();
         });
     });
 
+    
 /* exportando o modulo router */
-module.exports = router;
+module.exports = app;
